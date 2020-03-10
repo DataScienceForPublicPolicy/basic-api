@@ -7,7 +7,7 @@
   setwd("/Users/jeff/Documents/Github/basic-api")
   
 #Load
-  pacman::p_load(readr, ranger)
+  pacman::p_load(readr)
 
 #Build model
   train <- read_csv("data/home_sales_bk.csv")
@@ -20,7 +20,6 @@
 
 #Remove outliers
   train <- train[abs(scale(train$price))<2,]
-  
   
 #Regression
   mod <- lm(price ~ yearbuilt +  factor(class)*grossarea + factor(zipcode) + landarea, 

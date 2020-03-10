@@ -5,14 +5,17 @@
 ##################
 
 #Load file
-  load("/Users/jeff/Documents/Github/basic-api/model/mod.Rda")
-
+#Make sure to set the working directory to the model folder
+  load("//Working-directory-goes-here/Github/basic-api/model/mod.Rda")
 
 #* Check model qualities
 #* @get /modsummary
 function(msg=""){
   out <- summary(mod)
-  list(msg = paste0("Underlying linear regression model has a R-squared of ", round(out$r.squared,3), " with a RMSE of ", round(out$sigma,3)))
+  list(msg = paste0("Underlying linear regression model has a R-squared of ", 
+                    round(out$r.squared,3), 
+                    " with a RMSE of ", 
+                    round(out$sigma,3)))
 }
   
 
@@ -36,15 +39,14 @@ function(bclass, year, gsf, lsf, zip){
   yhat <- predict(mod, out)
   
   #Return result
-  return(yhat)
+  return(round(yhat))
   
 }
 
 
-#* Plot a histogram
+#* Plot residuals of trained model
 #* @png
-#* @get /plot
+#* @get /plotresids
 function(){
-  rand <- rnorm(100)
-  hist(rand)
+  plot(mod)
 }

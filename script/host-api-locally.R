@@ -3,7 +3,8 @@
 ######################
 
 #Set Directory with API code
-  setwd("/Users/jeff/Documents/Github/basic-api/script")
+#Make sure to set the working directory to the script folder of your local version of the repo
+  setwd("//Working-directory-goes-here/Github/basic-api/script")
 
 #Load Plumber package
   pacman::p_load(plumber)
